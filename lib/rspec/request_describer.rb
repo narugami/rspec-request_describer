@@ -33,7 +33,7 @@ module RSpec
           end
 
           let(:request_body) do
-            if headers.any? { |key, value| key.downcase == "content-type" && value == "application/json" }
+            if headers.any? { |key, value| key.downcase == "content-type" && Mime::Type.lookup(value).symbol == :json }
               params.to_json
             else
               params
